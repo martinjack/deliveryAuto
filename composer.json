@@ -1,0 +1,21 @@
+{
+    "name": "jackmartin/deliveryauto",
+    "description": "DeliveryAuto API library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jack Martin",
+            "email": "killfess@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "DeliveryAuto\\" : "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.6",
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
