@@ -23,49 +23,49 @@ composer require jackmartin/deliveryauto dev-master
 # Методы API
 
 1. Подключение класса
-	* [подключение]()
+	* [Подключение](https://github.com/martinjack/deliveryAuto#Подключение-класса)
 2. Получить список областей
-	* [regionList]()
+	* [regionList](https://github.com/martinjack/deliveryAuto#regionlist)
 3. Получить список городов
-	* [areasList]()
+	* [areasList](https://github.com/martinjack/deliveryAuto#areaslistdata--array)
 4. Получение списка представительств
-	* [warehousesList]()
+	* [warehousesList](https://github.com/martinjack/deliveryAuto#warehouseslistdata--array)
 5. Получение подробной информации о представительстве
-	* [getWarehouse]()
+	* [getWarehouse](https://github.com/martinjack/deliveryAuto#getwarehouseid)
 6. Поиск представительств
-	* [findWarehouse]()
+	* [findWarehouse](https://github.com/martinjack/deliveryAuto#findwarehousedata--array)
 7. Получение списка представительств по ID города
-	* [getWarehouseCity]()
+	* [getWarehouseCity](https://github.com/martinjack/deliveryAuto#getwarehousecitydata--array)
 8. Поиск квитанции
 	* [getReceipt]()
 9. Расчет времени доставки
-	* [timeDelivery]()
+	* [timeDelivery](https://github.com/martinjack/deliveryAuto#timedeliverydata--array)
 10. Показать список доп. услуг
-	* [getDopUslugi]()
+	* [getDopUslugi](https://github.com/martinjack/deliveryAuto#getdopuslugidata--array)
 11. Показать список тарифов
-	* [getTariffList]()
+	* [getTariffList](https://github.com/martinjack/deliveryAuto#gettarifflistdata--array)
 12. Показать список схем доставок
-	* [deliveryScheme]()
+	* [deliveryScheme](https://github.com/martinjack/deliveryAuto#deliveryschemedata--array)
 13. Расчет стоимости перевозки
-	* [costDelivery]()
+	* [costDelivery](https://github.com/martinjack/deliveryAuto#costdeliverydata--array)
 14. Показать новости компании
-	* [newsCompany]()
+	* [newsCompany](https://github.com/martinjack/deliveryAuto#newscompanycount--5-page--1)
 15. Показать темы сообщений
-	* [themeMessages]()
+	* [themeMessages](https://github.com/martinjack/deliveryAuto#thememessages)
 16. Отправление сообщения
-	* [sendMessage]()
+	* [sendMessage](https://github.com/martinjack/deliveryAuto#sendmessagedata--array)
 17. Отправление оценки отделения
-	* [rateOffice]()
+	* [rateOffice](https://github.com/martinjack/deliveryAuto#rateofficedata--array)
 18. Отправление оценки компании
-	* [rateCargo]()
+	* [rateCargo](https://github.com/martinjack/deliveryAuto#ratecargodata--array)
 19. Авторизация
-	* [auth]()
+	* [auth](https://github.com/martinjack/deliveryAuto#authdata--array)
 20. Выйти с профиля
-	* [exitAuth]()
+	* [exitAuth](https://github.com/martinjack/deliveryAuto#exitauth)
 21. Получить информацию о пользователе
-	* [getUser]()
+	* [getUser](https://github.com/martinjack/deliveryAuto#getuser)
 22. Получить квитанцию пользователя
-	* [userReceipt]()
+	* [userReceipt](https://github.com/martinjack/deliveryAuto#userreceiptdata--array)
 
 # Примеры
 
@@ -218,6 +218,19 @@ print_r($devAuto->timeDelivery(array(
     'warehouseSendId'   => 'fa156dd9-9630-e511-9ea9-000d3a200160',
     'warehouseResiveId' => '37548925-0ad3-e411-8a3a-000d3a200160',
 )));
+```
+
+### getReceipt($number) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->getReceipt('2130009668'));
 ```
 
 ### getDopUslugi($data = array()) ###
