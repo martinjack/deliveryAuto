@@ -78,8 +78,8 @@ use DeliveryAuto\Auto;
 include_once __DIR__ . '/vendor/autoload.php';
 
 //$devAuto = new Auto();
-//$devAuto = new Auto('KEY_AUTH', 'ua', 1); 
-//$devAuto = new Auto('KEY_AUTH', 'ru', 2);
+//$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET', 'ua', 1); 
+//$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET', 'ru', 2);
 //Auto(Ваш ключ API, Язык информации, Код страны(1 - Украина, 2 - Россия))
 ```
 
@@ -267,6 +267,7 @@ print_r($devAuto->getTariffList(array(
     'CitySendId'         => '569983ea-2e2b-e311-8b0d-00155d037960',
     'CityReceiveId'      => '47178398-442b-e311-8b0d-00155d037960',
     'WarehouseReceiveId' => '6bbee295-9575-e611-8104-000d3a204dce',
+
 )));
 ```
 
@@ -285,6 +286,7 @@ print_r($devAuto->deliveryScheme(array(
     'CitySendId'         => '569983ea-2e2b-e311-8b0d-00155d037960',
     'CityReceiveId'      => '47178398-442b-e311-8b0d-00155d037960',
     'WarehouseReceiveId' => '6bbee295-9575-e611-8104-000d3a204dce',
+    
 )));
 ```
 
