@@ -66,6 +66,12 @@ composer require jackmartin/deliveryauto dev-master
 	* [getUser](https://github.com/martinjack/deliveryAuto#getuser)
 22. Получить квитанцию пользователя
 	* [userReceipt](https://github.com/martinjack/deliveryAuto#userreceiptdata--array)
+23. Получить список платежных карт клиента
+	* [cardClient]()
+24. Получить список расчетных счетов клиента
+	* [invoiceClient]()
+25. Получить список категорий отправляемого груза
+	* [cargoCategory]()
 
 # Примеры
 
@@ -286,7 +292,7 @@ print_r($devAuto->deliveryScheme(array(
     'CitySendId'         => '569983ea-2e2b-e311-8b0d-00155d037960',
     'CityReceiveId'      => '47178398-442b-e311-8b0d-00155d037960',
     'WarehouseReceiveId' => '6bbee295-9575-e611-8104-000d3a204dce',
-    
+
 )));
 ```
 
@@ -370,12 +376,12 @@ $devAuto = new Auto();
 
 print_r($devAuto->sendMessage(array(
 
-	'ReceiptNumber'	=>	'123',
-	'Name'	=>	'Name',
-	'Phone'	=>	'123456',
-	'Email'	=>	'name@name.com',
-	'Subject'	=>	'Text',
-	'Message'	=>	'message text'
+    'ReceiptNumber' => '123',
+    'Name'          => 'Name',
+    'Phone'         => '123456',
+    'Email'         => 'name@name.com',
+    'Subject'       => 'Text',
+    'Message'       => 'message text',
 
 )));
 ```
@@ -509,4 +515,43 @@ print_r($devAuto->userReceipt(array(
     'type' => 1, //0 - Отправки , 1 - Получения
 
 )));
+```
+
+### cardClient() ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
+
+print_r($devAuto->cardClient());
+```
+
+### invoiceClient() ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
+
+print_r($devAuto->invoiceClient());
+```
+
+### cargoCategory() ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->cargoCategory());
 ```

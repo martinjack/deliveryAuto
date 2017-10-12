@@ -13,12 +13,19 @@ use GuzzleHttp\Exception\RequestException;
 class Auto
 {
     /**
-     *    API KEY
+     *  API KEY
      *
-     *    @var string
+     *  @var string
      *
      **/
     private $api_key = null;
+    /**
+     *  API SECRET
+     *
+     *  @var string
+     *
+     **/
+    private $api_secret = null;
     /**
      *    LANGUAGE DATA
      *
@@ -52,10 +59,11 @@ class Auto
      *
      *
      **/
-    public function __construct($key = '', $lang = 'ru', $country = 1)
+    public function __construct($key = '', $secret = '', $lang = 'ru', $country = 1)
     {
         return $this
             ->setKey($key)
+            ->setSecret($secret)
             ->setCulture($lang)
             ->setCountry($country);
     }
@@ -75,6 +83,11 @@ class Auto
     private function setKey($key)
     {
         $this->api_key = $key;
+        return $this;
+    }
+    private function setSecret($secret)
+    {
+        $this->api_secret = $secret;
         return $this;
     }
     /**
@@ -118,7 +131,6 @@ class Auto
             return http_build_query($data);
 
         }
-
     }
     /**
      *
@@ -132,7 +144,8 @@ class Auto
 
         $client = new Client(array(
             'headers' => array(
-                'Content-Type' => 'application/json',
+                'Content-Type'      => 'application/json',
+                'HMACAuthorization' => $this->api_key == '' && $this->api_secret == '' ? '' : $this->getKey(),
             ),
         ));
 
@@ -199,6 +212,31 @@ class Auto
         $data['currency'] = $this->getCurrency($data['currency']);
 
         return $data;
+    }
+    /**
+     *  СОЗДАЕМ КЛЮЧ
+     *  СТВОРЮЄМО КЛЮЧ
+     *
+     *  @param  string  $timestamp  SERVER TIME STAMP
+     *
+     *  @return hex string
+     *
+     **/
+    private function createKey($timestamp)
+    {
+        return hash_hmac('sha1', $this->api_key . $timestamp, $this->api_secret);
+    }
+    /**
+     *  ПЕРЕДАЄМО ГОТОВИЙ КЛЮЧ
+     *  ПЕРЕДАЕМ ГОТОВЫЙ КЛЮЧ
+     *
+     *  @return key auth string
+     *
+     **/
+    private function getKey()
+    {
+        $timestamp = time();
+        return 'amx ' . $this->api_key . ':' . time() . ':' . $this->createKey($timestamp);
     }
     /**
      *    ОТРИМАТИ ПЕРЕЛІК ОБЛАСТЕЙ
@@ -465,5 +503,38 @@ class Auto
     public function userReceipt($data)
     {
         return $this->requestData('GetUserReceipt', $this->prepare($data));
+    }
+    /**
+     *  ОТРИМУЄМО СПИСОК ПЛАТІЖНИХ КАРТ КЛІЄНТА
+     *  ПОЛУЧАЕМ СПИСОК ПЛАТЕЖНЫХ КАРТ КЛИЕНТА
+     *
+     *  @return json
+     *
+     **/
+    public function cardClient()
+    {
+        return $this->requestData('GetClientCards');
+    }
+    /**
+     *  ОТРИМУЄМО СПИСОК РОЗРАХУНКОВИХ РАХУНКІВ КЛІЄНТА
+     *  ПОЛУЧАЕМ СПИСОК РАСЧЕТНЫХ СЧЕТОВ КЛИЕНТА
+     *
+     *  @return json
+     *
+     **/
+    public function invoiceClient()
+    {
+        return $this->requestData('GetClientInvoices');
+    }
+    /**
+     *  ОТРИМАТИ СПИСОК КАТЕГОРІЙ ВІДПРАВЛЯЄТЬСЯ ВАНТАЖУ
+     *  ПОЛУЧИТЬ СПИСОК КАТЕГОРИЙ ОТПРАВЛЯЕМОГО ГРУЗА
+     *
+     *  @return json
+     *
+     **/
+    public function cargoCategory()
+    {
+        return $this->requestData('GetCargoCategory');
     }
 }
