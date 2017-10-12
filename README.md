@@ -37,7 +37,7 @@ composer require jackmartin/deliveryauto dev-master
 7. Получение списка представительств по ID города
 	* [getWarehouseCity](https://github.com/martinjack/deliveryAuto#getwarehousecitydata--array)
 8. Поиск квитанции
-	* [getReceipt]()
+	* [getReceipt](https://github.com/martinjack/deliveryAuto#getreceiptnumber)
 9. Расчет времени доставки
 	* [timeDelivery](https://github.com/martinjack/deliveryAuto#timedeliverydata--array)
 10. Показать список доп. услуг
