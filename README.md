@@ -67,11 +67,11 @@ composer require jackmartin/deliveryauto dev-master
 22. Получить квитанцию пользователя
 	* [userReceipt](https://github.com/martinjack/deliveryAuto#userreceiptdata--array)
 23. Получить список платежных карт клиента
-	* [cardClient]()
+	* [cardClient](https://github.com/martinjack/deliveryAuto#cardclient)
 24. Получить список расчетных счетов клиента
-	* [invoiceClient]()
+	* [invoiceClient](https://github.com/martinjack/deliveryAuto#invoiceclient)
 25. Получить список категорий отправляемого груза
-	* [cargoCategory]()
+	* [cargoCategory](https://github.com/martinjack/deliveryAuto#cargocategory)
 
 # Примеры
 
