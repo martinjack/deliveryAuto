@@ -27,7 +27,7 @@ composer require jackmartin/deliveryauto dev-master
 2. Получить список областей
 	* [regionList](https://github.com/martinjack/deliveryAuto#regionlist)
 3. Получить список городов
-	* [cityList](https://github.com/martinjack/deliveryAuto#areaslistdata--array)
+	* [cityList](https://github.com/martinjack/deliveryAuto#citylistdata--array)
 4. Получение списка представительств
 	* [warehousesList](https://github.com/martinjack/deliveryAuto#warehouseslistdata--array)
 5. Получение подробной информации о представительстве
@@ -102,7 +102,7 @@ $devAuto = new Auto();
 print_r($devAuto->regionList());
 ```
 
-### areasList($data = array()) ###
+### cityList($data = array()) ###
 ```php
 <?php
 
