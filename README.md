@@ -27,7 +27,7 @@ composer require jackmartin/deliveryauto dev-master
 2. Получить список областей
 	* [regionList](https://github.com/martinjack/deliveryAuto#regionlist)
 3. Получить список городов
-	* [areasList](https://github.com/martinjack/deliveryAuto#areaslistdata--array)
+	* [cityList](https://github.com/martinjack/deliveryAuto#areaslistdata--array)
 4. Получение списка представительств
 	* [warehousesList](https://github.com/martinjack/deliveryAuto#warehouseslistdata--array)
 5. Получение подробной информации о представительстве
@@ -112,7 +112,7 @@ include_once __DIR__ . '/vendor/autoload.php';
 
 $devAuto = new Auto();
 
-print_r($devAuto->areasList(array(
+print_r($devAuto->cityList(array(
     'fl_all'   => 0,
     'regionId' => 3898,
 )));
