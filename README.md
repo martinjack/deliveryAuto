@@ -116,6 +116,7 @@ print_r($devAuto->cityList(array(
     'fl_all'   => 0,
     'regionId' => 3898,
 )));
+//print_r($devAuto->cityList());
 ```
 
 ### warehousesList($data = array()) ###
