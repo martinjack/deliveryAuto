@@ -2,6 +2,8 @@
 
 PHP класс для работы с API DeliveryAuto
 
+[![Latest Stable Version](https://poser.pugx.org/jackmartin/deliveryauto/v/stable)](https://packagist.org/packages/jackmartin/deliveryauto) [![Total Downloads](https://poser.pugx.org/jackmartin/deliveryauto/downloads)](https://packagist.org/packages/jackmartin/deliveryauto) [![License](https://poser.pugx.org/jackmartin/deliveryauto/license)](https://packagist.org/packages/jackmartin/deliveryauto)
+
 # Документация
 
 [API по работе интернет магазинов с Delivery v3.2 (Оформление)](http://www.delivery-auto.com.ua/userfs/LocalizableFiles/ru-RU/delivery-api/6ce6e819-7ed6-42d8-8392-e5ee22d10091_API%20%D0%BF%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%D0%B2%20%D1%81%20Delivery%20v3%202%20(%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5).pdf)
@@ -71,7 +73,24 @@ composer require jackmartin/deliveryauto dev-master
 24. Получить список расчетных счетов клиента
 	* [invoiceClient](https://github.com/martinjack/deliveryAuto#invoiceclient)
 25. Получить список категорий отправляемого груза
-	* [cargoCategory](https://github.com/martinjack/deliveryAuto#cargocategory)
+ 	* [cargoCategory](https://github.com/martinjack/deliveryAuto#cargocategory)
+26. Получить доступную валюту на отделении
+    * [availableCurrency]()
+27. Получить список плательщиков
+    * [listPayer]()
+28. Получить список адресов клиента
+    * [clientAddress]()
+29. Получить список возможных адресов клиента
+    * [clientAddressPossible]()
+30. Получить список типов оплаты клиента
+    * [clientPaymentType]()
+31. Получить список складов / почтоматов по ID города
+    * [warehousesByCity]()
+32. Получить полную информацию по квитанции
+    * [getReceiptFull]()
+33. 
+    *
+
 
 # Примеры
 
@@ -268,6 +287,7 @@ use DeliveryAuto\Auto;
 include_once __DIR__ . '/vendor/autoload.php';
 
 $devAuto = new Auto();
+//$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
 
 print_r($devAuto->getTariffList(array(
 
@@ -555,4 +575,125 @@ include_once __DIR__ . '/vendor/autoload.php';
 $devAuto = new Auto();
 
 print_r($devAuto->cargoCategory());
+```
+
+### availableCurrency($data = array()) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->availableCurrency(array(
+
+    'CitySendId'    => '1e8e7257-a82a-e311-8b0d-00155d037960',
+    'CityReceiveId' => 'da5e7df3-a42a-e311-8b0d-00155d037960',
+    'PayerType'     => 0,
+    'PayerId'       => '',
+
+)));
+```
+
+### listPayer($data = array()) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
+
+print_r($devAuto->listPayer(array(
+
+    'CitySendId'       => '1e8e7257-a82a-e311-8b0d-00155d037960',
+    'CityReceiveId'    => '385f7df3-a42a-e311-8b0d-00155d037960',
+    'ClientSenderId'   => 'af491888-1429-e311-8b0d-00155d037960',
+    'ClientReceiverId' => '6aee3f13-372b-e311-8b0d-00155d037960',
+    'PayerType'        => 0,
+
+)));
+```
+
+### clientAddress($data = array()) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
+
+print_r($devAuto->clientAddress(array(
+
+    'CityId'   => '1e8e7257-a82a-e311-8b0d-00155d037960',
+    'ClientId' => '385f7df3-a42a-e311-8b0d-00155d037960',
+
+)));
+```
+
+### clientAddressPossible($data = array()) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto('KEY_AUTH', 'KEY_SECRET');
+
+print_r($devAuto->clientAddressPossible(array(
+
+    'CityReceiveId'   => '1e8e7257-a82a-e311-8b0d-00155d037960',
+    'ClientSenderId' => '385f7df3-a42a-e311-8b0d-00155d037960',
+
+)));
+```
+
+### clientPaymentType($clientID) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->clientPaymentType('1e8e7257-a82a-e311-8b0d-00155d037960'));
+```
+
+### warehousesByCity($data = array()) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->warehousesByCity(array(
+
+    'CityId'        => 'af491888-1429-e311-8b0d-00155d037960',
+    'DirectionType' => 0,
+
+)));
+```
+
+### getReceiptFull($number) ###
+```php
+<?php
+
+use DeliveryAuto\Auto;
+
+include_once __DIR__ . '/vendor/autoload.php';
+
+$devAuto = new Auto();
+
+print_r($devAuto->getReceiptFull('2130009668'));
 ```
